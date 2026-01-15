@@ -1,0 +1,1352 @@
+/* stylelint-disable */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dynamic Sports Carnival Website - Premium Dark Ocean Theme
+Base Gradient: Deep ocean blues → dark teals → navy tones
+  #0f2027 → #203a43 → #2c5364 → #0a3d62 → #1e3c72
+Warm Accents (20% opacity): Coral red, turquoise, sky blue, golden, sunset orange
+Carnival Text Gradient: Honey yellow #ffeaa7 → Peach #fab1a0 → Golden #fdcb6e → Terra cotta #e17055
+Badge Gradient: Orange-to-gold #ffd89b → #ffa751
+Button Gradient: Vibrant orange-to-yellow #ffa751 → #ffe259
+Typography: Clean white #ffffff, Light cyan-white #e8f4f8, Soft blue-white #b8dce8
+Animation: 18-20s smooth transitions, 135deg diagonal flow, dual-layer opposite directions
+Frosted glass morphism: 8% white with 20px blur, 15% white borders
+Modern, sophisticated, premium feel with warm accents against cool dark base
+*/
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Base colors - Deep ocean dark theme */
+    --background: 200 60% 10%; /* Deep ocean #0f2027 */
+    --foreground: 195 40% 95%; /* Light cyan-white #e8f4f8 */
+
+    /* Card components - Frosted glass effect */
+    --card: 200 30% 20%; /* Dark teal card #203a43 */
+    --card-foreground: 195 40% 95%;
+
+    /* Popover components */
+    --popover: 200 30% 20%;
+    --popover-foreground: 195 40% 95%;
+
+    /* Primary action color - Vibrant orange-to-yellow gradient base */
+    --primary: 38 100% 66%; /* Golden orange #ffa751 */
+    --primary-foreground: 210 20% 20%; /* Dark slate #2c3e50 */
+
+    /* Secondary action color - Honey yellow */
+    --secondary: 45 100% 81%; /* Honey yellow #ffeaa7 */
+    --secondary-foreground: 210 20% 20%;
+
+    /* Muted backgrounds - Frosted glass */
+    --muted: 200 20% 25%; /* Muted ocean blue */
+    --muted-foreground: 195 30% 75%; /* Soft blue-white #b8dce8 */
+
+    /* Accent highlights - Peach/coral */
+    --accent: 15 90% 78%; /* Peach #fab1a0 */
+    --accent-foreground: 210 20% 20%;
+
+    /* Destructive/Error states */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 195 40% 95%;
+
+    /* Borders and separators - Semi-transparent white */
+    --border: 200 15% 35%; /* Subtle ocean border */
+    --input: 200 15% 35%;
+    --ring: 38 100% 66%; /* Focus ring matches primary */
+
+    /* Chart colors - Carnival themed palette */
+    --chart-1: 38 100% 66%; /* Golden orange */
+    --chart-2: 45 100% 81%; /* Honey yellow */
+    --chart-3: 15 90% 78%; /* Peach */
+    --chart-4: 200 30% 20%; /* Dark teal */
+    --chart-5: 195 40% 95%; /* Light cyan-white */
+
+    /* Sidebar navigation */
+    --sidebar-background: 200 30% 20%;
+    --sidebar-foreground: 195 40% 95%;
+    --sidebar-primary: 38 100% 66%;
+    --sidebar-primary-foreground: 210 20% 20%;
+    --sidebar-accent: 45 100% 81%;
+    --sidebar-accent-foreground: 210 20% 20%;
+    --sidebar-border: 200 15% 35%;
+    --sidebar-ring: 38 100% 66%;
+
+    /* Status colors */
+    --success: 142 50% 45%;
+    --warning: 38 92% 50%;
+    --info: 193 100% 43%;
+  }
+
+  .dark {
+    /* Dark mode uses same deep ocean theme */
+    --background: 200 60% 8%; /* Even deeper ocean for dark mode */
+    --foreground: 195 40% 95%;
+    --card: 200 30% 18%;
+    --card-foreground: 195 40% 95%;
+    --popover: 200 30% 18%;
+    --popover-foreground: 195 40% 95%;
+    --primary: 38 100% 66%;
+    --primary-foreground: 210 20% 20%;
+    --secondary: 45 100% 81%;
+    --secondary-foreground: 210 20% 20%;
+    --muted: 200 20% 23%;
+    --muted-foreground: 195 30% 75%;
+    --accent: 15 90% 78%;
+    --accent-foreground: 210 20% 20%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 195 40% 95%;
+    --border: 200 15% 33%;
+    --input: 200 15% 33%;
+    --ring: 38 100% 66%;
+    --chart-1: 38 100% 66%;
+    --chart-2: 45 100% 81%;
+    --chart-3: 15 90% 78%;
+    --chart-4: 200 30% 18%;
+    --chart-5: 195 40% 95%;
+    --sidebar-background: 200 30% 18%;
+    --sidebar-foreground: 195 40% 95%;
+    --sidebar-primary: 38 100% 66%;
+    --sidebar-primary-foreground: 210 20% 20%;
+    --sidebar-accent: 45 100% 81%;
+    --sidebar-accent-foreground: 210 20% 20%;
+    --sidebar-border: 200 15% 33%;
+    --sidebar-ring: 38 100% 66%;
+    --success: 142 50% 45%;
+    --warning: 38 92% 50%;
+    --info: 193 100% 43%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Mobile-First: Deep Ocean Carnival Gradient - Layer 1 (Base: Deep ocean blues → dark teals → navy) */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 25%, #2c5364 50%, #0a3d62 75%, #1e3c72 100%);
+    background-size: 400% 400%;
+    animation: gradientFlow 12.6s ease infinite;
+  }
+
+  /* Layer 2: Warm accent overlay (Coral red, turquoise, sky blue, golden, sunset orange - 20% opacity) */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: linear-gradient(135deg, 
+      rgba(255, 107, 107, 0.2) 0%,    /* Coral red */
+      rgba(72, 219, 251, 0.2) 25%,    /* Turquoise */
+      rgba(116, 185, 255, 0.2) 50%,   /* Sky blue */
+      rgba(253, 203, 110, 0.2) 75%,   /* Golden */
+      rgba(255, 159, 64, 0.2) 100%    /* Sunset orange */
+    );
+    background-size: 400% 400%;
+    animation: gradientFlow 14s ease-in-out infinite reverse;
+    opacity: 1;
+    mix-blend-mode: overlay;
+  }
+
+  /* Desktop Enhancement - Premium Carnival Effect */
+  @media (min-width: 1024px) {
+    /* Layer 1: Enhanced deep ocean gradient with all color stops */
+    body::before {
+      background: linear-gradient(135deg, 
+        #0f2027 0%, 
+        #203a43 20%, 
+        #2c5364 40%, 
+        #0a3d62 60%, 
+        #1e3c72 80%, 
+        #0f2027 100%
+      );
+      background-size: 500% 500%;
+      animation: gradientFlow 14s ease infinite;
+    }
+
+    /* Layer 2: Enhanced warm accent gradient */
+    body::after {
+      background: linear-gradient(135deg, 
+        rgba(255, 107, 107, 0.2) 0%,
+        rgba(72, 219, 251, 0.2) 20%,
+        rgba(116, 185, 255, 0.2) 40%,
+        rgba(253, 203, 110, 0.2) 60%,
+        rgba(255, 159, 64, 0.2) 80%,
+        rgba(255, 107, 107, 0.2) 100%
+      );
+      background-size: 500% 500%;
+      animation: gradientFlow 12.6s ease-in-out infinite reverse;
+      opacity: 1;
+    }
+  }
+
+  /* Layer 3: Carnival Lights - Radial glow effects from corners with warm accents */
+  html::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    background: 
+      radial-gradient(circle at 0% 0%, rgba(253, 203, 110, 0.15) 0%, transparent 50%),    /* Golden glow top-left */
+      radial-gradient(circle at 100% 100%, rgba(255, 159, 64, 0.15) 0%, transparent 50%); /* Sunset orange glow bottom-right */
+    animation: glowPulse 5.6s ease-in-out infinite;
+  }
+
+  /* Desktop: Enhanced carnival lights with 4-corner premium glow */
+  @media (min-width: 1024px) {
+    html::after {
+      background: 
+        radial-gradient(circle at 0% 0%, rgba(253, 203, 110, 0.2) 0%, transparent 40%),    /* Golden top-left */
+        radial-gradient(circle at 100% 0%, rgba(72, 219, 251, 0.15) 0%, transparent 40%),  /* Turquoise top-right */
+        radial-gradient(circle at 0% 100%, rgba(255, 107, 107, 0.15) 0%, transparent 40%), /* Coral bottom-left */
+        radial-gradient(circle at 100% 100%, rgba(255, 159, 64, 0.2) 0%, transparent 40%); /* Sunset orange bottom-right */
+      animation: glowPulse 7s ease-in-out infinite;
+    }
+  }
+
+  /* Gradient flow animation - smooth diagonal movement */
+  @keyframes gradientFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Glow pulse animation for radial effects */
+  @keyframes glowPulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes gradientShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes orbFloat {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -30px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+  }
+
+  @keyframes orbFloatDesktop {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    25% {
+      transform: translate(40px, -40px) scale(1.15);
+    }
+    50% {
+      transform: translate(-30px, 30px) scale(0.85);
+    }
+    75% {
+      transform: translate(20px, -20px) scale(1.05);
+    }
+  }
+
+  /* Pause animations when tab is inactive for performance */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    body::before,
+    body::after {
+      animation: none !important;
+    }
+
+    .animate-badge,
+    .icon-bounce,
+    .border-glow,
+    .text-orange-glow {
+      animation: none !important;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .sport-card,
+    .stat-card {
+      border: 2px solid #ffeaa7; /* Honey yellow for high contrast */
+    }
+
+    .btn-secondary {
+      border: 2px solid #ffeaa7;
+    }
+  }
+}
+
+@layer utilities {
+  /* Carnival Gradient Text - Elegant gold gradient matching badge colors */
+  .carnival-gradient-text {
+    background: linear-gradient(
+      110deg,
+      #ffd89b 0%,      /* Light champagne gold (badge start) */
+      #f5d89d 12%,     /* Soft champagne */
+      #ffc876 25%,     /* Warm gold */
+      #ffbe63 37%,     /* Rich amber */
+      #ffa751 50%,     /* Deep amber (badge end) */
+      #ffbe63 63%,     /* Rich amber */
+      #ffc876 75%,     /* Warm gold */
+      #f5d89d 88%,     /* Soft champagne */
+      #ffd89b 100%     /* Light champagne gold (loop) */
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: carnivalWaveFlow 6s ease-in-out infinite;
+    position: relative;
+  }
+
+  /* Hover state - subtle brightness increase */
+  .carnival-gradient-text:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Badge Gradient - Orange-to-gold */
+  .badge-gradient {
+    background: linear-gradient(135deg, #ffd89b, #ffa751);
+  }
+
+  /* Button Primary Gradient - Vibrant orange-to-yellow */
+  .btn-primary-gradient {
+    background: linear-gradient(135deg, #ffa751, #ffe259);
+  }
+
+  /* Frosted Glass Effect - 8% white with 20px blur */
+  .frosted-glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  /* Frosted Glass Hover - Brightened */
+  .frosted-glass-hover:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  /* Warm Orange Glow Shadow */
+  .warm-glow {
+    box-shadow: 0 8px 32px rgba(255, 167, 81, 0.3), 0 4px 16px rgba(255, 226, 89, 0.2);
+  }
+
+  /* Warm Glow Hover - Intensified */
+  .warm-glow-hover:hover {
+    box-shadow: 0 12px 48px rgba(255, 167, 81, 0.5), 0 6px 24px rgba(255, 226, 89, 0.3);
+  }
+
+  /* Golden Border Glow */
+  .golden-border {
+    border: 1px solid rgba(255, 234, 167, 0.4);
+  }
+
+  /* Golden Border Hover */
+  .golden-border-hover:hover {
+    border-color: rgba(255, 234, 167, 0.7);
+    box-shadow: 0 0 20px rgba(255, 234, 167, 0.3);
+  }
+
+  /* Carnival Wave Flow Animation - Smooth left-to-right wave motion */
+  @keyframes carnivalWaveFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  /* Mobile-First: Carnival badge with pulse animation - Orange-to-gold gradient */
+  .badge-pill {
+    background: linear-gradient(135deg, #ffd89b, #ffa751);
+    box-shadow: 0 0 20px rgba(255, 167, 81, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 9999px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c3e50; /* Dark slate text */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease-out;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(255, 167, 81, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(255, 167, 81, 0.6);
+    }
+  }
+
+  /* Mobile-First: Sport card with frosted glass and touch interactions */
+  .sport-card {
+    background: rgba(255, 255, 255, 0.08); /* Frosted glass 8% white */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 20px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Mobile: Touch feedback (NO hover) */
+  .sport-card:active {
+    transform: scale(0.96);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 234, 167, 0.5); /* Golden accent */
+  }
+
+  /* Ripple effect container */
+  .sport-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 140, 66, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .sport-card:active::after {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* Desktop: Hover effects (1024px+) - Lift up 8px, scale 1.02x, shimmer animation */
+  @media (min-width: 1024px) {
+    .sport-card {
+      padding: 40px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .sport-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      background: rgba(255, 255, 255, 0.12); /* Brightened frosted glass */
+      border-color: rgba(255, 234, 167, 0.7); /* Golden border glow */
+      box-shadow: 
+        0 0 30px rgba(255, 167, 81, 0.3),
+        0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .sport-card:hover .sport-card-icon {
+      transform: rotate(10deg) scale(1.1);
+      filter: drop-shadow(0 0 12px rgba(255, 234, 167, 0.6));
+    }
+
+    .sport-card:active {
+      transform: scale(0.98);
+    }
+  }
+
+  /* Mobile-First: Stat card with frosted glass morphism - 8% white, 20px blur */
+  .stat-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.2s ease-out;
+    will-change: transform;
+  }
+
+  /* Mobile: Touch feedback */
+  .stat-card:active {
+    transform: scale(0.98);
+  }
+
+  /* Desktop: Hover effects - Lift up 8px, scale 1.02x, shimmer */
+  @media (min-width: 1024px) {
+    .stat-card:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 234, 167, 0.5);
+      box-shadow: 0 0 20px rgba(255, 167, 81, 0.2);
+      transform: translateY(-8px) scale(1.02);
+    }
+  }
+
+  /* Carnival icon glow - Large emoji-style (52px) with drop shadow */
+  .icon-carnival-glow {
+    font-size: 52px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    transition: all 0.3s ease-out;
+  }
+
+  /* Desktop hover enhancement */
+  @media (min-width: 1024px) {
+    .icon-carnival-glow:hover {
+      filter: drop-shadow(0 0 16px rgba(255, 234, 167, 0.8));
+      transform: scale(1.1);
+    }
+  }
+
+  /* Mobile-First: Primary button - Vibrant orange-to-yellow gradient with 48px touch target */
+  .btn-primary {
+    background: linear-gradient(135deg, #ffa751, #ffe259);
+    color: #2c3e50; /* Dark slate text */
+    font-weight: 600;
+    font-size: 16px;
+    padding: 14px 32px;
+    min-height: 48px;
+    border-radius: 8px;
+    border: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(255, 167, 81, 0.3), 0 4px 16px rgba(255, 226, 89, 0.2);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-primary:active {
+    transform: scale(0.96);
+    box-shadow: 0 4px 16px rgba(255, 167, 81, 0.4);
+  }
+
+  /* Desktop hover - Lifts 4px, glow intensifies, ripple effect */
+  @media (min-width: 1024px) {
+    .btn-primary:hover {
+      box-shadow: 0 12px 48px rgba(255, 167, 81, 0.5), 0 6px 24px rgba(255, 226, 89, 0.3);
+      transform: translateY(-4px);
+    }
+  }
+
+  /* Mobile-First: Secondary button - Frosted glass with golden border and 48px touch target */
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.08); /* Frosted glass */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: #ffeaa7; /* Honey yellow text */
+    font-weight: 600;
+    font-size: 16px;
+    padding: 14px 32px;
+    min-height: 48px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 234, 167, 0.4); /* Golden accent border */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-secondary:active {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 234, 167, 0.6);
+    transform: scale(0.96);
+  }
+
+  /* Desktop hover - Background brightens, border glows */
+  @media (min-width: 1024px) {
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 234, 167, 0.7);
+      box-shadow: 0 0 20px rgba(255, 234, 167, 0.3);
+      transform: translateY(-2px);
+    }
+  }
+
+  /* Mobile-First: Navigation link with 56px touch target */
+  .nav-link {
+    color: #b8dce8; /* Soft blue-white */
+    font-size: 18px;
+    font-weight: 500;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    transition: color 0.2s ease-out;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-link:active {
+    color: #ffeaa7; /* Honey yellow on active */
+  }
+
+  /* Desktop: Smaller size and hover */
+  @media (min-width: 1024px) {
+    .nav-link {
+      font-size: 16px;
+      min-height: auto;
+      padding: 0;
+    }
+
+    .nav-link:hover {
+      color: #ffeaa7; /* Honey yellow on hover */
+    }
+  }
+
+  /* Mobile-First: Typography Scale */
+  .text-heading-xl {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .text-heading-lg {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .text-body {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .text-card-title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  /* Desktop: Larger typography */
+  @media (min-width: 1024px) {
+    .text-heading-xl {
+      font-size: 72px;
+    }
+
+    .text-heading-lg {
+      font-size: 42px;
+    }
+
+    .text-body {
+      font-size: 18px;
+    }
+
+    .text-card-title {
+      font-size: 24px;
+    }
+  }
+
+  /* Golden carnival text with shimmer effect */
+  .text-carnival-glow {
+    color: #ffeaa7; /* Honey yellow */
+    text-shadow: 0 0 20px rgba(255, 234, 167, 0.5);
+    animation: shimmer 2.1s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% {
+      text-shadow: 0 0 20px rgba(255, 234, 167, 0.5);
+    }
+    50% {
+      text-shadow: 0 0 30px rgba(255, 234, 167, 0.8);
+    }
+  }
+
+  /* Border glow animation */
+
+  /* Desktop: Text shimmer with gradient */
+  @keyframes textShimmer {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+
+  /* Page load animations */
+  @keyframes fadeInSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes titleCascade {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes badgePulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 20px rgba(255, 140, 66, 0.4);
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 140, 66, 0.6);
+    }
+  }
+
+  @keyframes gentleBounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @keyframes rippleExpand {
+    from {
+      width: 0;
+      height: 0;
+      opacity: 0.5;
+    }
+    to {
+      width: 300px;
+      height: 300px;
+      opacity: 0;
+    }
+  }
+
+  @keyframes borderGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(255, 140, 66, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(255, 140, 66, 0.6);
+    }
+  }
+
+  @keyframes floatUp {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+  }
+
+  /* Desktop: Grid overlay pulse */
+  @keyframes gridPulse {
+    0%, 100% {
+      opacity: 0.02;
+    }
+    50% {
+      opacity: 0.04;
+    }
+  }
+
+  /* Mobile-First: Logo circle with 40px size - Carnival gradient */
+  .logo-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd89b, #ffa751); /* Orange-to-gold gradient */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    color: #2c3e50; /* Dark slate text */
+    box-shadow: 0 0 15px rgba(255, 167, 81, 0.4);
+  }
+
+  /* Sports Board Logo Image */
+  .logo-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 0 15px rgba(255, 167, 81, 0.4);
+  }
+
+  /* Header Back Arrow - Positioned at the FAR LEFT */
+  .header-back-arrow {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FFB84D; /* Golden orange */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 150;
+    padding: 8px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+
+  /* Desktop: Adjust positioning */
+  @media (min-width: 1280px) {
+    .header-back-arrow {
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      padding: 10px;
+    }
+  }
+
+  /* Hover state - Intense golden glow with slide-left animation */
+  .header-back-arrow:hover {
+    color: #FFC870;
+    text-shadow: 0 0 20px #FFB84D,
+                 0 0 30px #FFB84D,
+                 0 0 40px #FFB84D,
+                 0 0 50px #FFB84D;
+    transform: translateY(-50%) translateX(-8px) scale(1.3);
+    filter: brightness(1.3) drop-shadow(0 0 15px #FFB84D);
+  }
+
+  /* Active/Click state - Pulse effect */
+  .header-back-arrow:active {
+    transform: translateY(-50%) translateX(-10px) scale(1.2);
+  }
+
+  /* Focus state for accessibility */
+  .header-back-arrow:focus-visible {
+    outline: 2px solid #FFB84D;
+    outline-offset: 4px;
+    border-radius: 8px;
+  }
+
+  /* Glassmorphism header */
+  .glass-header {
+    backdrop-filter: blur(10px);
+    background: rgba(10, 25, 41, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeInSlideDown 0.3s ease-out;
+  }
+
+  /* Page load animations */
+  .animate-header {
+    animation: fadeInSlideDown 0.3s ease-out 0.3s both;
+  }
+
+  .animate-badge {
+    animation: badgePulse 2.1s ease-in-out 0.5s infinite;
+  }
+
+  .animate-title-1 {
+    animation: titleCascade 0.6s ease-out 0.7s both;
+  }
+
+  .animate-title-2 {
+    animation: titleCascade 0.6s ease-out 1s both;
+  }
+
+  .animate-stat-1 {
+    animation: fadeInSlideUp 0.5s ease-out 1s both;
+  }
+
+  .animate-stat-2 {
+    animation: fadeInSlideUp 0.5s ease-out 1.1s both;
+  }
+
+  .animate-stat-3 {
+    animation: fadeInSlideUp 0.5s ease-out 1.2s both;
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Desktop: Carnival text shimmer gradient */
+  @media (min-width: 1024px) {
+    .text-carnival-glow {
+      background: linear-gradient(90deg, #ffeaa7, #fab1a0, #fdcb6e, #e17055, #ffeaa7);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textShimmer 2.8s linear infinite;
+    }
+  }
+
+  /* Icon bounce animation */
+  .icon-bounce {
+    animation: gentleBounce 1.4s ease-in-out infinite;
+  }
+
+  /* Border glow animation */
+  .border-glow {
+    animation: borderGlow 1.4s ease-in-out infinite;
+  }
+
+  /* Touch target minimum size */
+  .touch-target {
+    min-width: 48px;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Smooth scrolling with momentum */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* GPU-accelerated transforms */
+  .gpu-accelerated {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Responsive header text - Handle longer "IIIT GUWAHATI SPORTS BOARD" text */
+  header .font-bold.text-base {
+    font-size: clamp(11px, 2.5vw, 16px);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  /* Mobile: Smaller font for longer header text */
+  @media (max-width: 480px) {
+    header .font-bold.text-base {
+      font-size: 10px;
+      letter-spacing: -0.3px;
+    }
+  }
+
+  /* Tablet: Medium font size */
+  @media (min-width: 481px) and (max-width: 1023px) {
+    header .font-bold.text-base {
+      font-size: 13px;
+    }
+  }
+
+  /* Desktop: Full size */
+  @media (min-width: 1024px) {
+    header .font-bold.text-base {
+      font-size: 16px;
+      letter-spacing: normal;
+    }
+  }
+
+  /* Registration page: Back button visibility fix */
+  .min-h-screen.py-12 .container .mb-6 {
+    position: relative;
+    z-index: 10;
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
+
+  /* Mobile: Enhanced back button visibility */
+  @media (max-width: 767px) {
+    .min-h-screen.py-12 {
+      padding-top: calc(4rem + env(safe-area-inset-top, 0));
+    }
+
+    .min-h-screen.py-12 .container .mb-6 {
+      margin-top: calc(12px + env(safe-area-inset-top, 0));
+      margin-bottom: 24px;
+      padding: 8px 12px;
+      background: rgba(10, 25, 41, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 8px;
+      display: inline-flex;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  /* iOS Safari: Safe area handling */
+  @supports (-webkit-touch-callout: none) {
+    @media (max-width: 767px) {
+      .min-h-screen.py-12 .container .mb-6 {
+        margin-top: max(12px, env(safe-area-inset-top));
+      }
+    }
+  }
+
+  /* Remove old utility classes */
+  .sport-card-hover {
+    transition: all 0.3s ease-out;
+  }
+
+  .sport-card-hover:hover {
+    transform: translateY(-4px);
+  }
+
+  .sport-card-hover:active {
+    transform: scale(0.98);
+  }
+
+  /* Dynamic header with gradient text effect */
+  .dynamic-header {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--foreground)) 0%,
+      hsl(var(--primary)) 50%,
+      hsl(var(--secondary)) 100%
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: gradientShift 8s ease infinite;
+  }
+
+  /* Neon border effect */
+  .neon-border {
+    border: 2px solid hsl(var(--primary) / 0.3);
+    box-shadow: 
+      0 0 10px hsl(var(--primary) / 0.2),
+      0 0 20px hsl(var(--primary) / 0.1),
+      inset 0 0 10px hsl(var(--primary) / 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .neon-border:hover {
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: 
+      0 0 15px hsl(var(--primary) / 0.3),
+      0 0 30px hsl(var(--primary) / 0.2),
+      inset 0 0 15px hsl(var(--primary) / 0.15);
+  }
+
+  /* High-visibility back button - WCAG AAA compliant */
+  .back-to-home-btn {
+    position: relative;
+    z-index: 50;
+    background: rgba(32, 58, 67, 0.95) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 2px solid hsl(38 100% 66% / 0.6) !important;
+    color: hsl(38 100% 66%) !important;
+    font-weight: 600 !important;
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      0 0 20px hsl(38 100% 66% / 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .back-to-home-btn:hover {
+    background: hsl(38 100% 66%) !important;
+    color: hsl(210 20% 20%) !important;
+    border-color: hsl(38 100% 66%) !important;
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 
+      0 8px 20px rgba(0, 0, 0, 0.4),
+      0 0 30px hsl(38 100% 66% / 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .back-to-home-btn:active {
+    transform: translateY(0) scale(1.02) !important;
+  }
+
+  /* Mobile-specific: Compact "Back" button positioned below header, above trophy */
+  .back-btn-mobile {
+    position: relative;
+    z-index: 40 !important;
+    background: rgba(32, 58, 67, 0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 2px solid hsl(38 100% 66% / 0.8) !important;
+    border-radius: 8px !important;
+    color: hsl(38 100% 66%) !important;
+    font-weight: 600 !important;
+    padding: 10px 24px !important;
+    font-size: 15px !important;
+    width: auto !important;
+    min-width: 120px !important;
+    box-shadow: 
+      0 6px 16px rgba(0, 0, 0, 0.5),
+      0 0 25px hsl(38 100% 66% / 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .back-btn-mobile:hover {
+    background: hsl(38 100% 66%) !important;
+    color: hsl(var(--background)) !important;
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 
+      0 8px 20px rgba(0, 0, 0, 0.6),
+      0 0 35px hsl(38 100% 66% / 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  }
+
+  .back-btn-mobile:active {
+    transform: translateY(0) scale(1.02) !important;
+  }
+
+  /* Ensure header has higher z-index */
+  .glass-header {
+    z-index: 50 !important;
+  }
+}
+
+
+
+
+/* User deletion animation */
+@keyframes fadeOutSlideUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 100px;
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.user-row-delete {
+  animation: fadeOutSlideUp 400ms ease-out forwards;
+}
+
+/* INVICTA Header Design Styles */
+.invicta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #f0a040 0%, #f4b860 100%);
+  color: #1e3c72;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  box-shadow: 0 4px 12px rgba(240, 160, 64, 0.3);
+}
+
+.invicta-title {
+  display: inline-block;
+  font-size: 4rem; /* 64px mobile - increased for prominence */
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.3rem; /* 4.8px - slightly increased spacing */
+  line-height: 1.1;
+  text-align: center;
+  
+  /* 3D Outlined Effect - Light blue fill with dark blue outline */
+  color: #a8c5e0;
+  
+  /* Multiple text-stroke layers for thick outline effect */
+  -webkit-text-stroke: 4px #2c4a6b;
+  text-stroke: 4px #2c4a6b;
+  
+  /* 3D depth shadow effect */
+  text-shadow: 
+    /* Dark blue outline shadows */
+    -1px -1px 0 #1e3a5f,
+    1px -1px 0 #1e3a5f,
+    -1px 1px 0 #1e3a5f,
+    1px 1px 0 #1e3a5f,
+    -2px -2px 0 #1e3a5f,
+    2px -2px 0 #1e3a5f,
+    -2px 2px 0 #1e3a5f,
+    2px 2px 0 #1e3a5f,
+    -3px -3px 0 #1e3a5f,
+    3px -3px 0 #1e3a5f,
+    -3px 3px 0 #1e3a5f,
+    3px 3px 0 #1e3a5f,
+    -4px -4px 0 #1e3a5f,
+    4px -4px 0 #1e3a5f,
+    -4px 4px 0 #1e3a5f,
+    4px 4px 0 #1e3a5f,
+    /* 3D depth effect */
+    5px 5px 0 #152a47,
+    6px 6px 0 #0f1f38,
+    7px 7px 0 #0a1628,
+    /* Soft outer glow - enhanced */
+    0 0 30px rgba(168, 197, 224, 0.4),
+    0 0 50px rgba(168, 197, 224, 0.2);
+  
+  /* Smooth rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  paint-order: stroke fill;
+}
+
+@media (min-width: 1280px) {
+  .invicta-title {
+    font-size: 6.5rem; /* 104px desktop - significantly increased */
+    letter-spacing: 0.4rem; /* 6.4px */
+    -webkit-text-stroke: 5px #2c4a6b;
+    text-stroke: 5px #2c4a6b;
+    
+    /* Enhanced 3D depth for larger size */
+    text-shadow: 
+      /* Dark blue outline shadows */
+      -1px -1px 0 #1e3a5f,
+      1px -1px 0 #1e3a5f,
+      -1px 1px 0 #1e3a5f,
+      1px 1px 0 #1e3a5f,
+      -2px -2px 0 #1e3a5f,
+      2px -2px 0 #1e3a5f,
+      -2px 2px 0 #1e3a5f,
+      2px 2px 0 #1e3a5f,
+      -3px -3px 0 #1e3a5f,
+      3px -3px 0 #1e3a5f,
+      -3px 3px 0 #1e3a5f,
+      3px 3px 0 #1e3a5f,
+      -4px -4px 0 #1e3a5f,
+      4px -4px 0 #1e3a5f,
+      -4px 4px 0 #1e3a5f,
+      4px 4px 0 #1e3a5f,
+      -5px -5px 0 #1e3a5f,
+      5px -5px 0 #1e3a5f,
+      -5px 5px 0 #1e3a5f,
+      5px 5px 0 #1e3a5f,
+      /* 3D depth effect - deeper for desktop */
+      6px 6px 0 #152a47,
+      7px 7px 0 #0f1f38,
+      8px 8px 0 #0a1628,
+      9px 9px 0 #050f18,
+      /* Soft outer glow - more prominent */
+      0 0 40px rgba(168, 197, 224, 0.5),
+      0 0 60px rgba(168, 197, 224, 0.3);
+  }
+}
+
+.invicta-subtitle-1 {
+  font-size: 1.125rem; /* 18px mobile */
+  font-weight: 600;
+  color: #f0a040;
+  letter-spacing: 0.025em;
+  line-height: 1.4;
+}
+
+@media (min-width: 1280px) {
+  .invicta-subtitle-1 {
+    font-size: 1.5rem; /* 24px desktop */
+  }
+}
+
+.invicta-subtitle-2 {
+  font-size: 0.875rem; /* 14px mobile */
+  font-weight: 500;
+  color: #b8c5d6;
+  text-transform: uppercase;
+  letter-spacing: 0.125rem; /* 2px */
+  line-height: 1.4;
+}
+
+@media (min-width: 1280px) {
+  .invicta-subtitle-2 {
+    font-size: 1.125rem; /* 18px desktop */
+  }
+}
+
+/* Enhanced animations for INVICTA header */
+@keyframes invictaFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-title-3 {
+  animation: invictaFadeIn 0.8s ease-out 0.6s both;
+}
