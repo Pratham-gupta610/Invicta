@@ -1,150 +1,44 @@
-/*import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import IntersectObserver from '@/components/common/IntersectObserver';
-
-import routes from './routes';
-
-import { AuthProvider } from '@/contexts/AuthContext';
-import { RouteGuard } from '@/components/common/RouteGuard';
-import { Header } from '@/components/layouts/Header';
-import { Footer } from '@/components/layouts/Footer';
-import { Toaster } from '@/components/ui/toaster';
-
-const App: React.FC = () => {
-  return (
-    <Router>
-      <AuthProvider>
-        <RouteGuard>
-          <IntersectObserver />
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-grow">
-              <Routes>
-                {routes.map((route, index) => (
-                  <Route
-                    key={index}
-                    path={route.path}
-                    element={route.element}
-                  />
-                ))}
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-          <Toaster />
-        </RouteGuard>
-      </AuthProvider>
-    </Router>
-  );
-};
-
-export default App;
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom'
-
-import IntersectObserver from '@/components/common/IntersectObserver'
-import routes from './routes'
-
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { RouteGuard } from '@/components/common/RouteGuard'
 import { Header } from '@/components/layouts/Header'
 import { Footer } from '@/components/layouts/Footer'
 import { Toaster } from '@/components/ui/toaster'
-
-const App: React.FC = () => {
-  return (
-    <Router basename={import.meta.env.BASE_URL}>
-      <AuthProvider>
-        <RouteGuard>
-          <IntersectObserver />
-
-          <div className="flex flex-col min-h-screen">
-            <Header />
-
-            <main className="flex-grow">
-              <Routes>
-                {routes.map((route, index) => (
-                  <Route
-                    key={index}
-                    path={route.path}
-                    element={route.element}
-                  />
-                ))}
-
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
-            </main>
-
-            <Footer />
-          </div>
-
-          <Toaster />
-        </RouteGuard>
-      </AuthProvider>
-    </Router>
-  )
-}
-
-export default App*/
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom'
-
-import IntersectObserver from '@/components/common/IntersectObserver'
 import routes from './routes'
 
-import { AuthProvider } from '@/contexts/AuthContext'
-import { RouteGuard } from '@/components/common/RouteGuard'
-import { Header } from '@/components/layouts/Header'
-import { Footer } from '@/components/layouts/Footer'
-import { Toaster } from '@/components/ui/toaster'
-
-const App: React.FC = () => {
+export default function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <AuthProvider>
-        <IntersectObserver />
         <Header />
 
-        <main className="flex-grow min-h-screen">
-          <Routes>
-            {/* PUBLIC ROUTES */}
-            {routes
-              .filter(route => !route.protected)
-              .map((route, index) => (
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={route.element}
-                />
-              ))}
+        <Routes>
+          {routes.map((route, i) =>
+            route.protected ? (
+              <Route
+                key={i}
+                path={route.path}
+                element={
+                  <RouteGuard>
+                    {route.element}
+                  </RouteGuard>
+                }
+              />
+            ) : (
+              <Route
+                key={i}
+                path={route.path}
+                element={route.element}
+              />
+            )
+          )}
 
-            {/* PROTECTED ROUTES */}
-            {routes
-              .filter(route => route.protected)
-              .map((route, index) => (
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={
-                    <RouteGuard>
-                      {route.element}
-                    </RouteGuard>
-                  }
-                />
-              ))}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
 
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </main>
-
+        <Footer />
+        <Toaster />
+      </AuthProvider>
+    </BrowserRouter>
+  )
+}
