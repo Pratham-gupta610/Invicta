@@ -157,7 +157,8 @@ export default function Login() {
             title: 'Success',
             description: 'Logged in successfully',
           });
-          navigate(from, { replace: true });
+          navigate('/');
+
         }
       } else {
         const { error } = await signUpWithEmail(
