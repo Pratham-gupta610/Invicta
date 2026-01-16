@@ -39,7 +39,7 @@ const App: React.FC = () => {
   );
 };
 
-export default App;*/
+export default App;
 import React from 'react'
 import {
   BrowserRouter as Router,
@@ -91,4 +91,60 @@ const App: React.FC = () => {
   )
 }
 
-export default App
+export default App*/
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom'
+
+import IntersectObserver from '@/components/common/IntersectObserver'
+import routes from './routes'
+
+import { AuthProvider } from '@/contexts/AuthContext'
+import { RouteGuard } from '@/components/common/RouteGuard'
+import { Header } from '@/components/layouts/Header'
+import { Footer } from '@/components/layouts/Footer'
+import { Toaster } from '@/components/ui/toaster'
+
+const App: React.FC = () => {
+  return (
+    <Router>
+      <AuthProvider>
+        <IntersectObserver />
+        <Header />
+
+        <main className="flex-grow min-h-screen">
+          <Routes>
+            {/* PUBLIC ROUTES */}
+            {routes
+              .filter(route => !route.protected)
+              .map((route, index) => (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={route.element}
+                />
+              ))}
+
+            {/* PROTECTED ROUTES */}
+            {routes
+              .filter(route => route.protected)
+              .map((route, index) => (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={
+                    <RouteGuard>
+                      {route.element}
+                    </RouteGuard>
+                  }
+                />
+              ))}
+
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+
