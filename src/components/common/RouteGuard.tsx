@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+/*import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -43,4 +43,44 @@ export function RouteGuard({ children }: RouteGuardProps) {
   }
 
   return <>{children}</>;
+}*/
+import { Navigate, useLocation } from 'react-router-dom'
+import { useAuth } from '@/contexts/AuthContext'
+
+interface RouteGuardProps {
+  children: React.ReactNode
+}
+
+// Pages that do NOT require login
+const PUBLIC_ROUTES = ['/login', '/403', '/404', '/']
+
+function isPublicRoute(path: string) {
+  return PUBLIC_ROUTES.includes(path)
+}
+
+export function RouteGuard({ children }: RouteGuardProps) {
+  const { user, loading } = useAuth()
+  const location = useLocation()
+
+  // While auth state is being determined
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+      </div>
+    )
+  }
+
+  // Not logged in & trying to access protected route
+  if (!user && !isPublicRoute(location.pathname)) {
+    return (
+      <Navigate
+        to="/login"
+        state={{ from: location }}
+        replace
+      />
+    )
+  }
+
+  return <>{children}</>
 }
