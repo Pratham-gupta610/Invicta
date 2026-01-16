@@ -157,7 +157,7 @@ export default function Login() {
             title: 'Success',
             description: 'Logged in successfully',
           });
-          navigate('/');
+          navigate(from, { replace: true });
 
         }
       } else {
