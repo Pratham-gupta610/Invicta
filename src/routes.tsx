@@ -48,6 +48,7 @@ const routes: RouteConfig[] = [
   {
     name: 'Login',
     path: '/login',
+    protected: false,
     element: <Login />,
   },
   {
