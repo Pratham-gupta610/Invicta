@@ -1,3 +1,4 @@
+import { supabase } from '@/db/supabase';
 const [rules, setRules] = useState<string | null>(null);
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
